@@ -1,3 +1,5 @@
+# Prototype - Not working yet.
+
 import rapidui
 import pygame
 from imgui import *
