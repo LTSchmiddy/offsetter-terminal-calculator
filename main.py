@@ -94,5 +94,5 @@ if __name__ == '__main__':
         if response.as_bin != "":
             print_str += f" -> {response.as_bin}"
 
-        print(print_str)
+        print(print_str + "\n")
 
