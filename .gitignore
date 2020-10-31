@@ -1,5 +1,10 @@
+/builds/
 /build/
 /dist/
 /.idea/
 *__pycache__/
 /venv/
+mcppt_settings.json
+mcppt-toolchain.cmake
+CMakeUserPresets.json
+imgui.ini

@@ -1,9 +1,9 @@
 import json, os
 
 default_settings_dict = {
-    "auto_walrus": False,
+    "auto_walrus": True,
     "convert_hex": False,
-    "convert_binary": True,
+    "convert_binary": False,
     "log_py_code": False
 
 }

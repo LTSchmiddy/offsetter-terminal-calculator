@@ -21,11 +21,8 @@ def parse_expression_to_python(expression: str, flags: List[StatementFlags]) -> 
 
     return expression
 
-def load_script(path):
-    pass
 
-
-def calculate_response_str(eval_statement: str, eval_scope: dict = {}, add_flags: List[StatementFlags] = None) -> Response:
+def calculate_response(eval_statement: str, eval_scope: dict = {}, add_flags: List[StatementFlags] = None) -> Response:
     result = None
 
     eval_statement, flags = StatementFlags.get_flags(eval_statement)
@@ -60,39 +57,46 @@ def calculate_response_str(eval_statement: str, eval_scope: dict = {}, add_flags
 
         result = eval(f"({py_code})", globals(), eval_scope)
 
-    except SyntaxError as e:
+    except Exception as e:
         return Response(flags, py_code, True, e)
 
-    except NameError as e:
-        return Response(flags, py_code, True, e)
+    return Response(flags, py_code, False, result)
 
-    except ValueError as e:
-        return Response(flags, py_code, True, e)
+def format_response(response: Response):
+    if StatementFlags.PASS in response.flags or StatementFlags.EXEC in response.flags:
+        return ""
 
-    return Response(flags, py_code,False, result)
+    if response.error:
+        return f"{response.of_type.__name__}: {str(response.value)}"
 
+    retVal = f" = {response.value}"
 
-if __name__ == '__main__':
+    if response.as_hex != "":
+        retVal += f" -> {response.as_hex}"
+
+    if response.as_bin != "":
+        retVal += f" -> {response.as_bin}"
+    
+    return retVal
+
+def calculate_formatted_response(*args, **kwargs):
+    result = format_response(calculate_response(*args, **kwargs))
+    print(result)
+    return result
+
+def main():
     local_scope = {}
 
     print("\n--- Offsetter Terminal Calculator: ---\n")
     while True:
         # eval_statement = input("> ")
-        response = calculate_response_str(input("> "))
-        if StatementFlags.PASS in response.flags or StatementFlags.EXEC in response.flags:
-            continue
+        response = calculate_response(input("> "), local_scope)
+        print_str = format_response(response)
 
-        if response.error:
-            print(f"{response.of_type.__name__}: {str(response.value)}")
-            continue
+        if print_str is not None:
+            print(print_str + "\n")
 
-        print_str = f" = {response.value}"
-
-        if response.as_hex != "":
-            print_str += f" -> {response.as_hex}"
-
-        if response.as_bin != "":
-            print_str += f" -> {response.as_bin}"
-
-        print(print_str + "\n")
+print("Python Loaded")
+if __name__ == '__main__':
+    main()
 
