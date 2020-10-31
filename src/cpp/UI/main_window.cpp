@@ -191,7 +191,7 @@ void MainWindow::on_run() {
     cmd_history.emplace_back(input_string.c_str());
     history_pos = (int)cmd_history.size();
 
-    std::string py_result = py_eval_calc(input_string);
+    std::string py_result = py_eval_calc_simple(input_string);
     log.emplace_back(input_string.c_str());
     log.emplace_back(py_result.c_str());
     

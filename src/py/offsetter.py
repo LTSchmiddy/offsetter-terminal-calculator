@@ -66,7 +66,7 @@ def format_response(response: Response):
     if StatementFlags.PASS in response.flags or StatementFlags.EXEC in response.flags:
         return ""
 
-    if response.error:
+    if response.is_error:
         return f"{response.of_type.__name__}: {str(response.value)}"
 
     retVal = f" = {response.value}"

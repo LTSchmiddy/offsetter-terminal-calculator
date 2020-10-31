@@ -4,19 +4,22 @@ from parsing.flags import StatementFlags
 
 class Response:
     py_code: str
-    error: bool
+    is_error: bool
     value: object
     of_type: type
+    type_name: str
     flags: List[StatementFlags]
 
     def __init__(self, p_flags=None, p_py_code: str = "", p_error: bool = False, p_result: object = None):
         if p_flags is None:
             p_flags = []
 
-        self.error = p_error
+        self.py_code = p_py_code
+        self.is_error = p_error
 
         self.value = p_result
         self.of_type = type(self.value)
+        self.type_name = type(self.value).__name__
 
         self.flags = p_flags
 

@@ -12,13 +12,24 @@
             "console": "integratedTerminal"
         },
         {
-            "name": "(Windows) Offsetter GUI",
+            "name": "Offsetter GUI (Debug - Windows) ",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}/builds/Debug/bin/gui/offsetter-gui.exe",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/debug-cwd/",
+            "cwd": "${workspaceFolder}/cwd/Debug/",
+            "environment": [],
+            "externalConsole": false
+        },
+        {
+            "name": "Offsetter GUI (Release - Windows) ",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/builds/Release/bin/gui/offsetter-gui.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/cwd/Release/",
             "environment": [],
             "externalConsole": false
         }

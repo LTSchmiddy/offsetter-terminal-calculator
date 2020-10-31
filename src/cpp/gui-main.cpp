@@ -243,9 +243,11 @@ int main(int argc, char* argv[])
 
     unload_python_module();
 
+#ifndef PY_BOOST_API_MODE
     if (Py_FinalizeEx() < 0) {
         return 120;
     }
+#endif
 
     return 0;
 }
