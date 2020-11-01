@@ -8,3 +8,6 @@ mcppt_settings.json
 mcppt-toolchain.cmake
 CMakeUserPresets.json
 imgui.ini
+
+/cwd/*
+/other/*

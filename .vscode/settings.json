@@ -99,5 +99,6 @@
         "xtr1common": "cpp",
         "xtree": "cpp",
         "*.rh": "cpp"
-    }
+    },
+    "eslint.enable": false
 }

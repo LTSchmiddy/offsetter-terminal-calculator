@@ -10,8 +10,8 @@ set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_MULTITHREADED ON)  
 set(Boost_USE_STATIC_RUNTIME OFF) 
 
-find_package(Python3 3.8 COMPONENTS Interpreter Development REQUIRED) # Uses latest python.
-# find_package(Python3 EXACT 3.8 COMPONENTS Interpreter Development REQUIRED) # Not sure the boost-python api is up-to-date with python 3.9. Force 3.8.
+# find_package(Python3 3.8 COMPONENTS Interpreter Development REQUIRED) # Uses latest python.
+find_package(Python3 EXACT 3.8 COMPONENTS Interpreter Development REQUIRED) # Not sure the boost-python api is up-to-date with python 3.9. Force 3.8.
 find_package(SDL2 CONFIG REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
